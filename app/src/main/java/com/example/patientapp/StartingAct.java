@@ -20,7 +20,7 @@ public class StartingAct extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flagsign=1;
-                Intent scanintent=new Intent(StartingAct.this, MenuActivity.class);
+                Intent scanintent=new Intent(StartingAct.this, QRscanner.class);
                 startActivity(scanintent);
             }
         });

@@ -40,6 +40,17 @@ public class MedReminderAct extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_med_reminder);
+        TextView textdoc=findViewById(R.id.showdoc);
+        TextView textmed=findViewById(R.id.showmedname);
+        TextView textdose=findViewById(R.id.showdosage);
+        TextView textdate=findViewById(R.id.showdate);
+        TextView textnod=findViewById(R.id.shownod);
+        Intent schact=getIntent();
+        textmed.setText(schact.getStringExtra("med_name"));
+        textdose.setText(schact.getStringExtra("dosage"));
+        textdoc.setText(schact.getStringExtra("docname"));
+        textdate.setText(schact.getStringExtra("date"));
+        textnod.setText(schact.getStringExtra("nod"));
 
         Button setev=findViewById(R.id.setit);
 

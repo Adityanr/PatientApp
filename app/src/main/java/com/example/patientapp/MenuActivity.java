@@ -59,20 +59,20 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         NavigationView navigationView=findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-                mRootRef.child("Quote").child(dayOfTheWeek).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String giveday=dataSnapshot.getValue().toString();
-                        TextView daytext=findViewById(R.id.quote);
-                        daytext.setText(giveday);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+        findViewById(R.id.paygatebutt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent payintent=new Intent(MenuActivity.this,PaymentGateway.class);
+                startActivity(payintent);
+            }
+        });
+        findViewById(R.id.prescbutt).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent prescintent=new Intent(MenuActivity.this,RetrievePrescription.class);
+                startActivity(prescintent);
+            }
+        });
 
     }
 
@@ -82,10 +82,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_profile:
                 Intent selectpro=new Intent(MenuActivity.this,ProfileActivity.class);
                 startActivity(selectpro);
-                break;
-            case R.id.nav_presc:
-                Intent selectpresc=new Intent(MenuActivity.this,RetrievePrescription.class);
-                startActivity(selectpresc);
                 break;
             case R.id.nav_latestpresc:
                 Intent selectlatpresc=new Intent(MenuActivity.this,LatestPresc.class);

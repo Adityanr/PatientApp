@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +21,7 @@ import static com.example.patientapp.StartingAct.flagsign;
 
 public class QRscanner extends AppCompatActivity implements View.OnClickListener {
     private Button buttonscan;
-    private TextView viewid;
+    private EditText viewid;
     private IntentIntegrator qrScan;
 
     @Override
@@ -28,7 +29,7 @@ public class QRscanner extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscanner);
         buttonscan = (Button) findViewById(R.id.scanbutt);
-        viewid = (TextView) findViewById(R.id.textid);
+        viewid =  findViewById(R.id.textid);
         buttonscan.setOnClickListener(this);
         qrScan = new IntentIntegrator(this);
         findViewById(R.id.proceedbutt).setOnClickListener(new View.OnClickListener() {
@@ -37,6 +38,10 @@ public class QRscanner extends AppCompatActivity implements View.OnClickListener
                 if(flagsign==1)
                 {
                     flagsign=0;
+                    SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
+                    SharedPreferences.Editor editSaveScanID=saveScanId.edit();
+                    editSaveScanID.putString("Scan_id",viewid.getText().toString());
+                    editSaveScanID.apply();
                     Intent nextsignintent=new Intent(QRscanner.this,MainActivity.class);
                     startActivity(nextsignintent);
                 }
@@ -64,6 +69,7 @@ public class QRscanner extends AppCompatActivity implements View.OnClickListener
             //if qrcode has nothing in it
             if (result.getContents() == null) {
                 Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
+
             } else {
                 //if qr contains data
                 try {

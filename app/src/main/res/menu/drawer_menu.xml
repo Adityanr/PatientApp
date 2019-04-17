@@ -10,9 +10,6 @@
         <item android:id="@+id/nav_profile"
             android:icon="@drawable/ic_account_circle_black_24dp"
             android:title="PROFILE"/>
-        <item android:id="@+id/nav_presc"
-            android:icon="@drawable/ic_preschistory"
-            android:title="PRESCRIPTION RECORD   "/>
         <item android:id="@+id/nav_latestpresc"
             android:icon="@drawable/ic_latestpresc"
             android:title="LATEST PRESCRIPTION"/>

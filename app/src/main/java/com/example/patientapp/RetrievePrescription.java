@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -41,7 +42,8 @@ public class RetrievePrescription extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrieve_prescription);
-        Button goretpre=findViewById(R.id.bckretpre);
+        final EditText searchthedoc=findViewById(R.id.searchdoctext);
+        Button searchbutt=findViewById(R.id.searchdoc);
         pmed=new Patientmeds();
         listViewpre=findViewById(R.id.listpre);
          list=new ArrayList<>();
@@ -65,29 +67,41 @@ public class RetrievePrescription extends AppCompatActivity {
 
             }
         });
+        searchbutt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchintent=new Intent(RetrievePrescription.this,Searchdoc.class);
+                searchintent.putExtra("search",searchthedoc.getText().toString());
+                startActivity(searchintent);
+            }
+        });
+
 
         listViewpre.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String data=(String)listViewpre.getItemAtPosition(position);
-                StringTokenizer tokens = new StringTokenizer(data, "\n\n\n");
+                StringTokenizer tokens = new StringTokenizer(data, "\n\n");
                 String schmed=tokens.nextToken();
                 String schdose=tokens.nextToken();
+                String schdoc=tokens.nextToken();
+                String schdate=tokens.nextToken();
+                String schnod=tokens.nextToken();
                 Intent schact=new Intent(RetrievePrescription.this,MedReminderAct.class);
                 schact.putExtra("med_name",schmed);
                 schact.putExtra("dosage",schdose);
+                schact.putExtra("docname",schdoc);
+                schact.putExtra("date",schdate);
+                schact.putExtra("nod",schnod);
                 startActivity(schact);
-            }
-        });
-        goretpre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent previact=new Intent(RetrievePrescription.this,MenuActivity.class);
-                startActivity(previact);
             }
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        Intent gotomenu=new Intent(RetrievePrescription.this,MenuActivity.class);
+        startActivity(gotomenu);
+    }
 }
