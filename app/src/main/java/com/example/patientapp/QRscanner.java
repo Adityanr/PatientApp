@@ -100,4 +100,10 @@ public class QRscanner extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         qrScan.initiateScan();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent startintent=new Intent(QRscanner.this,StartingAct.class);
+        startActivity(startintent);
+    }
 }

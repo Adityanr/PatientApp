@@ -1,6 +1,7 @@
 package com.example.patientapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,9 +61,11 @@ public class PaymentGateway extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_gateway);
+        Intent gopayintent=getIntent();
         final EditText payeditemail=findViewById(R.id.payemail);
         final EditText payeditphone=findViewById(R.id.payphone);
-        final EditText payeditamount=findViewById(R.id.payamount);
+        final TextView payeditamount=findViewById(R.id.payamount);
+        payeditamount.setText(gopayintent.getStringExtra("cash"));
         final EditText payeditpurpose=findViewById(R.id.paypurpose);
         final EditText payeditbuyername=findViewById(R.id.paybuyername);
         findViewById(R.id.paybutt).setOnClickListener(new View.OnClickListener() {
@@ -78,5 +81,11 @@ public class PaymentGateway extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent billintent=new Intent(PaymentGateway.this,Billactivity.class);
+        startActivity(billintent);
     }
 }

@@ -74,8 +74,33 @@ public class Searchdoc extends AppCompatActivity {
 
             }
         });
+        listViewpre3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                String data=(String)listViewpre3.getItemAtPosition(position);
+                StringTokenizer tokens = new StringTokenizer(data, "\n\n");
+                String schmed=tokens.nextToken();
+                String schdose=tokens.nextToken();
+                String schdoc=tokens.nextToken();
+                String schdate=tokens.nextToken();
+                String schnod=tokens.nextToken();
+                Intent schact=new Intent(Searchdoc.this,MedReminderAct.class);
+                schact.putExtra("med_name",schmed);
+                schact.putExtra("dosage",schdose);
+                schact.putExtra("docname",schdoc);
+                schact.putExtra("date",schdate);
+                schact.putExtra("nod",schnod);
+                startActivity(schact);
+            }
+        });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent retsearch=new Intent(Searchdoc.this,RetrievePrescription.class);
+        startActivity(retsearch);
     }
 }
 

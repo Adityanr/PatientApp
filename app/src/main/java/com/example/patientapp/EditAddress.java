@@ -33,4 +33,10 @@ public class EditAddress extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent editpnback=new Intent(EditAddress.this,EditPatient.class);
+        startActivity(editpnback);
+    }
 }

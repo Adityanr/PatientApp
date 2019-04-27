@@ -33,4 +33,10 @@ public class Editphone extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent editpnback=new Intent(Editphone.this,EditPatient.class);
+        startActivity(editpnback);
+    }
 }

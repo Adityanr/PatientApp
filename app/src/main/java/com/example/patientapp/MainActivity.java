@@ -51,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else
                         {
-                            Toast.makeText(MainActivity.this,"Incorrect password",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this,"Incorrect username/password",Toast.LENGTH_SHORT).show();
                         }
                         }
                         else{
-                            Toast.makeText(MainActivity.this, "Username does not exists", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Incorrect username/password", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -74,5 +74,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent qrintent=new Intent(MainActivity.this,QRscanner.class);
+        startActivity(qrintent);
     }
 }

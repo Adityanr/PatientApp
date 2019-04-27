@@ -27,10 +27,16 @@ public class Editallergy extends AppCompatActivity {
             public void onClick(View v) {
                 String fetchallergy=editall.getText().toString();
                 String fetchid=saveId.getString("ID","Error");
-                mRootRef.child("Patient details").child(fetchid).child("Allergies").setValue(fetchallergy);
+                mRootRef.child("Patient details").child(fetchid).child("Allergy").setValue(fetchallergy);
                 Intent sucact=new Intent(Editallergy.this,SucupdateName.class);
                 startActivity(sucact);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent editpnback=new Intent(Editallergy.this,EditPatient.class);
+        startActivity(editpnback);
     }
 }

@@ -33,4 +33,10 @@ public class EditAge extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent editpnback=new Intent(EditAge.this,EditPatient.class);
+        startActivity(editpnback);
+    }
 }

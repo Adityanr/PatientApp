@@ -65,4 +65,10 @@ public class RegisterActivity3 extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent goreg2=new Intent(RegisterActivity3.this,RegisterActivity2.class);
+        startActivity(goreg2);
+    }
 }

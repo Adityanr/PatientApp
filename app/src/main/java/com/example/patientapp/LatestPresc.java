@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -13,25 +15,48 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class LatestPresc extends AppCompatActivity {
+
+    ListView listViewpre4;
+    FirebaseDatabase database=FirebaseDatabase.getInstance();
+    DatabaseReference mRootRef=database.getReference();
+
+    ArrayList<String> list;
+    ArrayAdapter<String> adapter;
+    Patientmeds pmed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_latest_presc);
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        final TextView date=findViewById(R.id.View2date);
-        final TextView doctor=findViewById(R.id.View2doc);
-        final TextView dosage=findViewById(R.id.View2dosage);
-        final TextView medname=findViewById(R.id.View2medname);
-        final TextView nod=findViewById(R.id.View2nod);
-        DatabaseReference mRootRef=database.getReference();
-        SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
-        String fetchid=saveScanId.getString("Scan_id","Error");
-        mRootRef.child("Latest Presc").child(fetchid).child("Date").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        DatabaseReference mRootRef = database.getReference();
+        SharedPreferences saveScanId = getSharedPreferences("Scan_Details", MODE_PRIVATE);
+        String fetchid = saveScanId.getString("Scan_id", "Error");
+
+        pmed=new Patientmeds();
+        listViewpre4=findViewById(R.id.latestlist);
+        list=new ArrayList<>();
+        adapter = new ArrayAdapter<String>(this,R.layout.user_info,R.id.userinfo,list);
+
+
+        mRootRef.child("Latest Presc").child(fetchid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                date.setText(dataSnapshot.getValue().toString());
+                for(DataSnapshot ds:dataSnapshot.getChildren())
+                {
+                    pmed = ds.getValue(Patientmeds.class);
+                    list.add("\t\t\t\t\t\t\t\t" + pmed.getMed_name().toString() + "\n\n " + pmed.getDose().toString() + "\n\n" + "\t\t\t\t\t\t" + pmed.getDoc().toString() + "\n\n" + pmed.getDate().toString() + "\n\n" + pmed.getNod());
+
+
+                }
+
+
+
+                listViewpre4.setAdapter(adapter);
             }
 
             @Override
@@ -39,51 +64,6 @@ public class LatestPresc extends AppCompatActivity {
 
             }
         });
-        mRootRef.child("Latest Presc").child(fetchid).child("Doctor").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                doctor.setText(dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        mRootRef.child("Latest Presc").child(fetchid).child("Dosage").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                dosage.setText(dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        mRootRef.child("Latest Presc").child(fetchid).child("Med_Name").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                medname.setText(dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        mRootRef.child("Latest Presc").child(fetchid).child("Nod").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                nod.setText(dataSnapshot.getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
     }
 
     @Override

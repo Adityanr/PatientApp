@@ -126,4 +126,10 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent menuintent=new Intent(ProfileActivity.this,MenuActivity.class);
+        startActivity(menuintent);
+    }
 }

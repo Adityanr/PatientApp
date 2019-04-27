@@ -42,4 +42,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent qrscanneract=new Intent(RegisterActivity.this,QRscanner.class);
+        startActivity(qrscanneract);
+    }
 }

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +43,8 @@ public class RetrievePrescription extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrieve_prescription);
-        final EditText searchthedoc=findViewById(R.id.searchdoctext);
+        final SearchView searchthedoc=findViewById(R.id.searchdoctext);
+        final CharSequence query = searchthedoc.getQuery();
         Button searchbutt=findViewById(R.id.searchdoc);
         pmed=new Patientmeds();
         listViewpre=findViewById(R.id.listpre);
@@ -54,10 +56,9 @@ public class RetrievePrescription extends AppCompatActivity {
         mRootRef.child("Prescription").child(fetchid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds:dataSnapshot.getChildren())
-                {
-                   pmed=ds.getValue(Patientmeds.class);
-                   list.add("\t\t\t\t\t\t\t\t"+pmed.getMed_name().toString() +"\n\n "+pmed.getDose().toString()+"\n\n"+"\t\t\t\t\t\t"+pmed.getDoc().toString()+"\n\n"+pmed.getDate().toString()+"\n\n"+pmed.getNod());
+                for(DataSnapshot ds:dataSnapshot.getChildren()) {
+                        pmed = ds.getValue(Patientmeds.class);
+                        list.add("\t\t\t\t\t\t\t\t" + pmed.getMed_name().toString() + "\n\n " + pmed.getDose().toString() + "\n\n" + "\t\t\t\t\t\t" + pmed.getDoc().toString() + "\n\n" + pmed.getDate().toString() + "\n\n" + pmed.getNod());
                 }
                 listViewpre.setAdapter(adapter);
             }
@@ -71,7 +72,7 @@ public class RetrievePrescription extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent searchintent=new Intent(RetrievePrescription.this,Searchdoc.class);
-                searchintent.putExtra("search",searchthedoc.getText().toString());
+                searchintent.putExtra("search",query.toString());
                 startActivity(searchintent);
             }
         });

@@ -72,4 +72,10 @@ public class EditPatient extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent pro2intent=new Intent(EditPatient.this,ProfileActivity2.class);
+        startActivity(pro2intent);
+    }
 }

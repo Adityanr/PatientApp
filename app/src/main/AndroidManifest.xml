@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Searchdoc"></activity>
+        <activity android:name=".Billactivity"></activity>
+        <activity android:name=".Searchdoc" />
         <activity
             android:name=".PaymentGateway"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -42,6 +43,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RetrievePrescription"
+            android:windowSoftInputMode="adjustNothing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ProfileActivity2"

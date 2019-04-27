@@ -27,11 +27,17 @@ public class Editnok extends AppCompatActivity {
             public void onClick(View v) {
                 String fetchnok=editno.getText().toString();
                 String fetchid=saveId.getString("ID","Error");
-                mRootRef.child("Patient details").child(fetchid).child("Next of kin").setValue(fetchnok);
+                mRootRef.child("Patient details").child(fetchid).child("Next of Kin").setValue(fetchnok);
                 Intent sucact=new Intent(Editnok.this, SucupdateName.class);
                 startActivity(sucact);
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent editpnback=new Intent(Editnok.this,EditPatient.class);
+        startActivity(editpnback);
     }
 }

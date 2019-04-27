@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Regsuccess extends AppCompatActivity {
 
@@ -20,5 +21,10 @@ public class Regsuccess extends AppCompatActivity {
                 startActivity(menuact2);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(Regsuccess.this,"Press set button to go to menu",Toast.LENGTH_SHORT).show();
     }
 }

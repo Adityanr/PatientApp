@@ -38,7 +38,6 @@ import java.util.Date;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    
     private DrawerLayout drawer;
     
 
@@ -49,6 +48,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
         final String dayOfTheWeek = sdf.format(d);
+        SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
+        final String fetchid=saveScanId.getString("Scan_id","Error");
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         final DatabaseReference mRootRef=database.getReference();
         Toolbar toolbar=findViewById(R.id.toolbar);
@@ -62,14 +63,18 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         findViewById(R.id.paygatebutt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent payintent=new Intent(MenuActivity.this,PaymentGateway.class);
+
+
+                Intent payintent=new Intent(MenuActivity.this,Billactivity.class);
                 startActivity(payintent);
             }
         });
         findViewById(R.id.prescbutt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent prescintent=new Intent(MenuActivity.this,RetrievePrescription.class);
+
+                Intent prescintent=new Intent(MenuActivity.this,LatestPresc.class);
+
                 startActivity(prescintent);
             }
         });
@@ -84,8 +89,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(selectpro);
                 break;
             case R.id.nav_latestpresc:
-                Intent selectlatpresc=new Intent(MenuActivity.this,LatestPresc.class);
+                Intent selectlatpresc=new Intent(MenuActivity.this,RetrievePrescription.class);
                 startActivity(selectlatpresc);
+                break;
+            case R.id.nav_signout:
+                Intent selectsignout=new Intent(MenuActivity.this,StartingAct.class);
+                startActivity(selectsignout);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
@@ -99,7 +108,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         }
         else {
-            super.onBackPressed();
+            Toast.makeText(MenuActivity.this,"Press signout to exit",Toast.LENGTH_SHORT).show();
         }
         }
 
