@@ -66,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-        reg.setOnClickListener(new View.OnClickListener() {
+        /*reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent regact=new Intent(MainActivity.this, QRscanner.class);
+                Intent regact=new Intent(MainActivity.this, OTPActivity.class);
                 startActivity(regact);
             }
-        });
+        });*/
 
     }
 

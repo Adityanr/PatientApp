@@ -39,6 +39,8 @@ import java.util.Date;
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+
+    public static String fetchname;
     
 
     @Override
@@ -47,11 +49,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_menu);
         SimpleDateFormat sdf = new SimpleDateFormat("EEEE");
         Date d = new Date();
+
         final String dayOfTheWeek = sdf.format(d);
-        SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
-        final String fetchid=saveScanId.getString("Scan_id","Error");
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        final DatabaseReference mRootRef=database.getReference();
+
+
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer=findViewById(R.id.drawer_layout);
@@ -96,6 +97,25 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 Intent selectsignout=new Intent(MenuActivity.this,StartingAct.class);
                 startActivity(selectsignout);
                 break;
+            case R.id.nav_doctor:
+                FirebaseDatabase database=FirebaseDatabase.getInstance();
+                final DatabaseReference mRootRef=database.getReference();
+                SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
+                final String fetchid=saveScanId.getString("Scan_id","Error");
+                mRootRef.child("Patient details").child(fetchid).child("Patient Name").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        fetchname=dataSnapshot.getValue().toString();
+                        Intent selectlab=new Intent(MenuActivity.this,LabActivity.class);
+                        startActivity(selectlab);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(MenuActivity.this,"fail",Toast.LENGTH_SHORT).show();
+                    }
+                });
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

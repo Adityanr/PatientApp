@@ -58,7 +58,7 @@ public class RetrievePrescription extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds:dataSnapshot.getChildren()) {
                         pmed = ds.getValue(Patientmeds.class);
-                        list.add("\t\t\t\t\t\t\t\t" + pmed.getMed_name().toString() + "\n\n " + pmed.getDose().toString() + "\n\n" + "\t\t\t\t\t\t" + pmed.getDoc().toString() + "\n\n" + pmed.getDate().toString() + "\n\n" + pmed.getNod());
+                        list.add("\t\t\t\t\t\t\t\t" + pmed.getMed_name().toString() + "\n\n " + pmed.getDose().toString() + "\n\n" + "\t\t\t\t\t\t" + pmed.getDoc().toString() + "\n\n" + "\t\t\t"+pmed.getDate().toString() + "\n\n" + "\t\t\t\t"+pmed.getNod());
                 }
                 listViewpre.setAdapter(adapter);
             }

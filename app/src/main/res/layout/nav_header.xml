@@ -15,13 +15,14 @@ android:padding="16dp"
         android:layout_width="104dp"
         android:layout_height="87dp"
         android:src="@drawable/ic_hospital" />
+
     <TextView
+        style="@style/AppTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="Menu"
-        android:textColor="@color/colorBlack"
-        style="@style/AppTheme"
+        android:text="    MENU"
         android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorBlack" />
 </LinearLayout>

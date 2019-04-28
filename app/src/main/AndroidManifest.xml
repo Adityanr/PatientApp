@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
 
     <application
         android:allowBackup="true"
@@ -21,7 +22,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Billactivity"></activity>
+        <activity android:name=".OTPActivity2"></activity>
+        <activity android:name=".OTPActivity" />
+        <activity android:name=".ForgotPassword" />
+        <activity android:name=".LabActivity" />
+        <activity android:name=".Billactivity" />
         <activity android:name=".Searchdoc" />
         <activity
             android:name=".PaymentGateway"
@@ -43,8 +48,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RetrievePrescription"
-            android:windowSoftInputMode="adjustNothing"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".ProfileActivity2"
             android:theme="@style/AppTheme.NoActionBar" />

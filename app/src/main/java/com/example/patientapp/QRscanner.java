@@ -53,13 +53,6 @@ public class QRscanner extends AppCompatActivity implements View.OnClickListener
                 }
             }
         });
-        findViewById(R.id.backstart).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent backstartintent=new Intent(QRscanner.this,StartingAct.class);
-                startActivity(backstartintent);
-            }
-        });
     }
 
     @Override

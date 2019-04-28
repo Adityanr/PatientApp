@@ -99,4 +99,20 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+    <string name="bg_prompt">Choose a blood group</string>
+    <string-array name="blood_group">
+        <item>O+</item>
+        <item>O-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+    </string-array>
+    <string name="gender_prompt">Choose gender</string>
+    <string-array name="gender">
+        <item>M</item>
+        <item>F</item>
+    </string-array>
 </resources>

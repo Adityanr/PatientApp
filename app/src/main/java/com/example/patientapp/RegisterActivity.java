@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText paddr=findViewById(R.id.pataddress);
         final EditText pphone=findViewById(R.id.patphone);
         final EditText page=findViewById(R.id.patage);
-        final EditText psex=findViewById(R.id.patgender);
+        final Spinner psex=findViewById(R.id.patgender);
         final EditText pnok=findViewById(R.id.patnok);
         Button next=findViewById(R.id.nextbutt);
         next.setOnClickListener(new View.OnClickListener() {
@@ -36,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
                 nextact.putExtra("patient_address",paddr.getText().toString());
                 nextact.putExtra("patient_phone",pphone.getText().toString());
                 nextact.putExtra("patient_age",page.getText().toString());
-                nextact.putExtra("patient_sex",psex.getText().toString());
+                nextact.putExtra("patient_sex",String.valueOf(psex.getSelectedItem()));
                 nextact.putExtra("patient_nok",pnok.getText().toString());
                 startActivity(nextact);
             }
