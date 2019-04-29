@@ -17,12 +17,13 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Succesfully Registered"
-        android:textSize="50dp"
         android:textAlignment="center"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.621" />
 
     <Button
         android:id="@+id/setlife"
