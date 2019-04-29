@@ -20,7 +20,7 @@ public class AppointmentActivity extends AppCompatActivity {
         findViewById(R.id.linkgen).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textappoint.setText("www.google.com/"+fetchid);
+                textappoint.setText("https://too-too-trouble.000webhostapp.com/patientappointdept.html?id="+fetchid);
 
             }
         });
