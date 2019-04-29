@@ -44,7 +44,7 @@ public class Notification_reciever3 extends BroadcastReceiver {
                 .setContentIntent(pendingIntent3)
                 .setSmallIcon(android.R.drawable.arrow_up_float)
                 .setContentTitle("Medicine ALERT3")
-                .setContentText("Click this to view the medicine333 to be consumed")
+                .setContentText("Click this to view the medicines to be consumed")
                 .setAutoCancel(true);
         notificationManager3.notify(p,builder3.build());
 
