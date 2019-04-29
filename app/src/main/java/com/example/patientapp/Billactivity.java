@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -64,14 +65,20 @@ public class Billactivity extends AppCompatActivity {
         findViewById(R.id.viewbillbutt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mRootRef.child("Patient Pharmacy").child(fetchname).addValueEventListener(new ValueEventListener() {
+                mRootRef.child("Patient Pharmacy").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            billgen = ds.getValue(Billgen.class);
-                            list.add(billgen.getMed_name() + "\t\t\t\t\t\t\t\t\t" + billgen.getPrice());
+                        if (dataSnapshot.child(fetchname).exists()) {
+                            for (DataSnapshot ds : dataSnapshot.child(fetchname).getChildren()) {
+                                billgen = ds.getValue(Billgen.class);
+                                list.add(billgen.getMed_name() + "\t\t\t\t\t\t\t\t\t" + billgen.getPrice());
+                            }
+                            listViewbill.setAdapter(adapter);
+                            findViewById(R.id.gopaybutt).setEnabled(true);
+                        }else{
+                            Toast.makeText(Billactivity.this, "No bill detected", Toast.LENGTH_SHORT).show();
+                            findViewById(R.id.gopaybutt).setEnabled(false);
                         }
-                        listViewbill.setAdapter(adapter);
                     }
 
                     @Override
@@ -80,12 +87,16 @@ public class Billactivity extends AppCompatActivity {
                     }
                 });
 
-                mRootRef.child("Patient Pharmacy").child(fetchname).child("total").child("med_name").addValueEventListener(new ValueEventListener() {
+                mRootRef.child("Patient Pharmacy").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        getcash =dataSnapshot.getValue().toString();
-                        TextView tottext=findViewById(R.id.totaltext);
-                        tottext.setText(getcash);
+                        if(dataSnapshot.child(fetchname).exists()) {
+                            getcash = dataSnapshot.child(fetchname).child("total").child("price").getValue().toString();
+                        }
+                        else{
+                            Toast.makeText(Billactivity.this, "No bill detected", Toast.LENGTH_SHORT).show();
+
+                        }
                     }
 
                     @Override

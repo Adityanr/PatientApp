@@ -17,7 +17,7 @@ public class EditAge extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_age);
-        final SharedPreferences saveId=getSharedPreferences("Details",MODE_PRIVATE);
+        final SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         final DatabaseReference mRootRef=database.getReference();
         final EditText getage=findViewById(R.id.editag);
@@ -26,7 +26,7 @@ public class EditAge extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String fetchage=getage.getText().toString();
-                String fetchid=saveId.getString("ID","Error");
+                String fetchid=saveScanId.getString("Scan_id","Error");
                 mRootRef.child("Patient details").child(fetchid).child("Age").setValue(fetchage);
                 Intent sucact=new Intent(EditAge.this,SucupdateName.class);
                 startActivity(sucact);

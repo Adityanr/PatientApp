@@ -17,7 +17,7 @@ public class Editallergy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editallergy);
-        final SharedPreferences saveId=getSharedPreferences("Details",MODE_PRIVATE);
+        final SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         final DatabaseReference mRootRef=database.getReference();
         final EditText editall=findViewById(R.id.editaller);
@@ -26,7 +26,7 @@ public class Editallergy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String fetchallergy=editall.getText().toString();
-                String fetchid=saveId.getString("ID","Error");
+                String fetchid=saveScanId.getString("Scan_id","Error");
                 mRootRef.child("Patient details").child(fetchid).child("Allergy").setValue(fetchallergy);
                 Intent sucact=new Intent(Editallergy.this,SucupdateName.class);
                 startActivity(sucact);

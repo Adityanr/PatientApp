@@ -16,6 +16,9 @@
         <item android:id="@+id/nav_doctor"
             android:icon="@drawable/ic_lab"
             android:title="LAB RESULT"/>
+        <item android:id="@+id/nav_appoint"
+            android:icon="@drawable/ic_appoint"
+            android:title="APPOINTMENT"/>
         <item android:id="@+id/nav_signout"
             android:icon="@drawable/ic_signout"
             android:title="SIGN OUT"/>

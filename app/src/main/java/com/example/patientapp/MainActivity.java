@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
         final EditText pass=findViewById(R.id.pwd);
         Button sign=findViewById(R.id.enter);
-        Button reg=findViewById(R.id.register);
         sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

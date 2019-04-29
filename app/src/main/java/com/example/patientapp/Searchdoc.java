@@ -40,8 +40,8 @@ public class Searchdoc extends AppCompatActivity {
         list=new ArrayList<>();
         adapter = new ArrayAdapter<String>(this,R.layout.user_info,R.id.userinfo,list);
 
-        final SharedPreferences saveId=getSharedPreferences("Details",MODE_PRIVATE);
-        String fetchid=saveId.getString("ID","Error");
+        final SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
+        String fetchid=saveScanId.getString("Scan_id","Error");
 
         mRootRef.child("Prescription").child(fetchid).addValueEventListener(new ValueEventListener() {
             @Override

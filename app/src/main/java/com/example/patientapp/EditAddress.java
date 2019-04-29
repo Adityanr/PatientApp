@@ -17,7 +17,7 @@ public class EditAddress extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_address);
-        final SharedPreferences saveId=getSharedPreferences("Details",MODE_PRIVATE);
+        final SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         final DatabaseReference mRootRef=database.getReference();
         final EditText newaddress=findViewById(R.id.editaddr);
@@ -25,7 +25,7 @@ public class EditAddress extends AppCompatActivity {
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fetchid=saveId.getString("ID","Error");
+                String fetchid=saveScanId.getString("Scan_id","Error");
                 String fetchaddr=newaddress.getText().toString();
                 mRootRef.child("Patient details").child(fetchid).child("Address").setValue(fetchaddr);
                 Intent sucact=new Intent(EditAddress.this,SucupdateName.class);

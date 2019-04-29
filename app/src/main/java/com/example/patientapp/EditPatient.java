@@ -71,6 +71,13 @@ public class EditPatient extends AppCompatActivity {
                 startActivity(editnokact);
             }
         });
+        findViewById(R.id.editthepass).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editofpass=new Intent(EditPatient.this,Editpassword.class);
+                startActivity(editofpass);
+            }
+        });
     }
 
     @Override

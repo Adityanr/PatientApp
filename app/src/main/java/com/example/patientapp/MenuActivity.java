@@ -97,6 +97,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 Intent selectsignout=new Intent(MenuActivity.this,StartingAct.class);
                 startActivity(selectsignout);
                 break;
+            case R.id.nav_appoint:
+                Intent selectappoint=new Intent(MenuActivity.this,AppointmentActivity.class);
+                startActivity(selectappoint);
+                break;
+
             case R.id.nav_doctor:
                 FirebaseDatabase database=FirebaseDatabase.getInstance();
                 final DatabaseReference mRootRef=database.getReference();

@@ -48,6 +48,10 @@ public class QRscanner extends AppCompatActivity implements View.OnClickListener
                 else if (flagreg==1)
                 {
                     flagreg=0;
+                    SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
+                    SharedPreferences.Editor editSaveScanID=saveScanId.edit();
+                    editSaveScanID.putString("Scan_id",viewid.getText().toString());
+                    editSaveScanID.apply();
                     Intent nextregintent=new Intent(QRscanner.this,RegisterActivity.class);
                     startActivity(nextregintent);
                 }

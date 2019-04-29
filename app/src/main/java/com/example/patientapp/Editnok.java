@@ -17,7 +17,7 @@ public class Editnok extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editnok);
-        final SharedPreferences saveId=getSharedPreferences("Details",MODE_PRIVATE);
+        final SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         final DatabaseReference mRootRef=database.getReference();
         final EditText editno=findViewById(R.id.unok);
@@ -26,7 +26,7 @@ public class Editnok extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String fetchnok=editno.getText().toString();
-                String fetchid=saveId.getString("ID","Error");
+                String fetchid=saveScanId.getString("Scan_id","Error");
                 mRootRef.child("Patient details").child(fetchid).child("Next of Kin").setValue(fetchnok);
                 Intent sucact=new Intent(Editnok.this, SucupdateName.class);
                 startActivity(sucact);

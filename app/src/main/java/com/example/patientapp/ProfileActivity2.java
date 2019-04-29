@@ -23,8 +23,8 @@ public class ProfileActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_profile2);
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference mRootRef=database.getReference();
-        final SharedPreferences saveId=getSharedPreferences("Details",MODE_PRIVATE);
-        String fetchid=saveId.getString("ID","Error");
+        SharedPreferences saveScanId=getSharedPreferences("Scan_Details",MODE_PRIVATE);
+        String fetchid=saveScanId.getString("Scan_id","Error");
         final TextView getbg=findViewById(R.id.Viewbg);
         final TextView getallergy=findViewById(R.id.Viewallergy);
         final TextView getphyname=findViewById(R.id.Viewphyname);

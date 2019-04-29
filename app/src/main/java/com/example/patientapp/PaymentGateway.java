@@ -66,7 +66,7 @@ public class PaymentGateway extends AppCompatActivity {
         final EditText payeditphone=findViewById(R.id.payphone);
         final TextView payeditamount=findViewById(R.id.payamount);
         payeditamount.setText(gopayintent.getStringExtra("cash"));
-        final EditText payeditpurpose=findViewById(R.id.paypurpose);
+        final TextView payeditpurpose=findViewById(R.id.paypurpose);
         final EditText payeditbuyername=findViewById(R.id.paybuyername);
         findViewById(R.id.paybutt).setOnClickListener(new View.OnClickListener() {
             @Override
