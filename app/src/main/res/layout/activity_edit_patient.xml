@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditPatient"
-    android:background="@drawable/menumed">
+    android:background="@drawable/drugmainbg">
 
     <Button
         android:id="@+id/editage"
