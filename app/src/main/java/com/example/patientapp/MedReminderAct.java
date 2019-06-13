@@ -59,8 +59,8 @@ public class MedReminderAct extends AppCompatActivity{
             public void onClick(View v) {
 
                 Calendar calendar= Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY,10);//setting time using edittext
-                calendar.set(Calendar.MINUTE,04);
+                calendar.set(Calendar.HOUR_OF_DAY,13);//setting time using edittext
+                calendar.set(Calendar.MINUTE,50);
                 calendar.set(Calendar.SECOND,40);
                 Intent notintent=new Intent(getApplicationContext(),Notification_reciever.class);
                 PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),m,notintent,PendingIntent.FLAG_ONE_SHOT);
@@ -68,8 +68,8 @@ public class MedReminderAct extends AppCompatActivity{
                 alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
 
                 Calendar calendar2= Calendar.getInstance();
-                calendar2.set(Calendar.HOUR_OF_DAY,10);//setting time using edittext
-                calendar2.set(Calendar.MINUTE,06);
+                calendar2.set(Calendar.HOUR_OF_DAY,13);//setting time using edittext
+                calendar2.set(Calendar.MINUTE,52);
                 calendar2.set(Calendar.SECOND,40);
                 Intent notintent2=new Intent(getApplicationContext(),Notification_reciever2.class);
                 PendingIntent pendingIntent2=PendingIntent.getBroadcast(getApplicationContext(),k,notintent2,PendingIntent.FLAG_ONE_SHOT);
@@ -77,8 +77,8 @@ public class MedReminderAct extends AppCompatActivity{
                 alarmManager2.setRepeating(AlarmManager.RTC_WAKEUP,calendar2.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent2);
 
                 Calendar calendar3= Calendar.getInstance();
-                calendar3.set(Calendar.HOUR_OF_DAY,10);//setting time using edittext
-                calendar3.set(Calendar.MINUTE,8);
+                calendar3.set(Calendar.HOUR_OF_DAY,13);//setting time using edittext
+                calendar3.set(Calendar.MINUTE,54);
                 calendar3.set(Calendar.SECOND,40);
                 Intent notintent3=new Intent(getApplicationContext(),Notification_reciever3.class);
                 PendingIntent pendingIntent3=PendingIntent.getBroadcast(getApplicationContext(),l,notintent3,PendingIntent.FLAG_ONE_SHOT);
